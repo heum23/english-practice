@@ -6,12 +6,8 @@
   "plugins": [
     {
       "name": "english-practice",
-      "description": "English practice mode for Claude Code - casual/formal/strict levels",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/heum23/english-practice.git"
-      },
-      "homepage": "https://github.com/heum23/english-practice"
+      "source": "./",
+      "description": "English practice mode for Claude Code - casual/formal/strict levels"
     }
   ]
 }
