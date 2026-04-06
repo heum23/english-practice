@@ -1,0 +1,15 @@
+{
+  "name": "english-practice",
+  "description": "English practice mode plugin - practice English while coding with casual/formal/strict correction levels",
+  "version": "1.0.0",
+  "author": {
+    "name": "heum23"
+  },
+  "license": "MIT",
+  "keywords": [
+    "english",
+    "language-practice",
+    "english-mode",
+    "correction"
+  ]
+}
