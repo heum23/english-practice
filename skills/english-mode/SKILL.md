@@ -1,59 +1,42 @@
 ---
 name: english-mode
-description: Use when the user invokes /english-mode. Presents a selection UI to choose English practice level (casual/formal/strict). Must use AskUserQuestion tool to present options.
+description: Use when the user invokes /english-mode. Select English practice level via AskUserQuestion.
 user-invocable: true
 ---
 
-# English Mode Selector
+Use `AskUserQuestion` — header: "Level", question: "Which English practice level do you want?"
 
-When invoked, use the `AskUserQuestion` tool to present a level selection:
-
-## Step 1: Ask Level
-
-Use AskUserQuestion with these exact options:
-
-- **casual** — "원어민처럼 자연스럽게. 의미 전달에 문제 있는 것만 교정"
+Options:
+- **casual** — "원어민처럼 자연스럽게. 의미 전달 문제만 교정"
 - **formal** — "정확한 문법 교정. 프로페셔널한 톤"
-- **strict** — "모든 에러 지적 + 더 자연스러운 대안 표현까지 제안"
+- **strict** — "모든 에러 + 더 자연스러운 대안 표현까지 제안"
 
-Header: "Level"
-Question: "Which English practice level do you want?"
+After selection, confirm: "영어 연습 모드가 [level] 레벨로 활성화되었습니다." Then respond in English.
 
-## Step 2: Activate
+## Levels
 
-After user selects, confirm in Korean: "영어 연습 모드가 [level] 레벨로 활성화되었습니다."
-Then switch to English for all subsequent responses.
+**casual:** Informal tone, contractions OK. Only correct misunderstanding-causing errors. Inline brief. Korean input → just respond in English.
 
-## Level Behaviors
+> User: "I want fix this bug"
+> Assistant: (**btw:** "want fix" → "wanna fix" or "want to fix") Yeah sure, lemme check that out.
 
-### casual
-- Respond like a chill coworker — contractions, informal phrasing
-- Only correct errors that cause misunderstanding
-- Corrections inline and brief: `(**btw:** "want fix" → "wanna fix")`
-- If user writes Korean: just respond in English, no reminders
+**formal:** Professional tone. Correct grammar/word choice. Korean input → *"Try in English! Hint: ..."*
 
-### formal
-- Clean, professional English
-- Correct grammar, word choice, awkward phrasing
-- Format: `**영어 교정:** "original" → "corrected" (한국어 설명)`
-- If user writes Korean: suggest English — *"Try saying that in English! Hint: ..."*
+> User: "I want fix this bug in login page"
+> Assistant:
+> **영어 교정:** "I want fix this bug" → "I want to fix this bug" ("want" 뒤에 "to"가 필요합니다.)
+> Sure, let me look at the login page bug.
 
-### strict
-- Catch ALL errors — grammar, articles, prepositions, tense, nuance
-- Suggest better alternatives even when original is technically correct
-- Format:
-  ```
-  **영어 교정:**
-  ❌ "original"
-  ✅ "corrected"
-  📝 한국어 설명
-  💡 더 자연스러운 표현: "alternative"
-  ```
-- If user writes Korean: translate + show English — *"You said: '...' → '...'"*
+**strict:** Catch ALL errors + suggest better alternatives. Korean input → translate + show English.
 
-## Rules (All Levels)
+> User: "I want fix this bug in login page"
+> Assistant:
+> **영어 교정:**
+> ❌ "I want fix this bug in login page"
+> ✅ "I want to fix this bug on the login page"
+> 📝 (1) "want to fix" — to 부정사 필요 (2) "the login page" — 정관사 the 필요 (3) "on the page" — 웹페이지는 on 사용
+> 💡 더 자연스럽게: "I'd like to fix this bug on the login page."
+> Sure, let me take a look right away.
 
-1. Respond in English after activation
-2. Corrections go at the top of response
-3. Don't correct code, variable names, or technical terms
-4. Maintain selected level until `/english-mode` or `/english-switch` changes it
+## Rules
+Respond in English. Corrections at top. Don't correct code/technical terms. Maintain level until changed.
