@@ -1,7 +1,8 @@
 # english-practice
 
-English practice mode plugin. Helps non-native speakers practice English during development work.
+English practice mode plugin for non-native speakers.
 
 ## Skills
 
-- `english-mode` — Toggle English practice mode on/off. When on, Claude responds in English and corrects user's English mistakes in Korean.
+- `english-mode` — Select English practice level (casual/formal/strict) via interactive selection UI
+- `english-switch` — Toggle English practice mode on/off via selection UI
